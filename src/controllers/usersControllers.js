@@ -15,9 +15,9 @@ const usersControllers={
 
 
      }
-      else{return res.render("form", {errors:errors}) }
+     //else{return res.render("form", {errors:errors}) }
 
-    res.redirect("form", {})
+     //res.redirect("form", {})
        
     }
 }
