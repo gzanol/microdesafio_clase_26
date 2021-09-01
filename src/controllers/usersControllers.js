@@ -1,5 +1,5 @@
 const { validationResult } = require("express-validator");
-const validaciones=require("express-validator");
+//const validaciones=require("express-validator");
 const usersControllers={
 
     create: function(req, res){
@@ -7,15 +7,18 @@ const usersControllers={
     },
 
     update:function(req, res){
-        let errors=validationResult(req);
-        if (!errors.isEmpty()){
+      let resultValidation=validationResult(req);
+     if (resultValidation.errors.lenth>0){
+         return res.render("form",{
+         errors:resultValidation.mapped(),
+    });
 
-        }
-        else{
-            return res.render("form", {errors:errors})
 
-        }
-       // res.redirect("form", {})
+     }
+      else{return res.render("form", {errors:errors}) }
+
+    res.redirect("form", {})
+       
     }
 }
 
