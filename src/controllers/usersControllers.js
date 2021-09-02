@@ -8,9 +8,10 @@ const usersControllers={
 
     update:function(req, res){
       let resultValidation=validationResult(req);
-     if (resultValidation.errors.lenth>0){
+     if (resultValidation.errors.length>0){
          return res.render("form",{
          errors:resultValidation.mapped(),
+         oldData:req.body
     });
 
 

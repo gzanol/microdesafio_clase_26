@@ -1,45 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
+   
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
     <title>Document</title>
 </head>
 <body>
     <div class="formulario">
-<% if(locals.errors){ %>
+<!-- <% if(locals.errors){ %>
     <% for(let oneError in errors) { %> 
         <p><%= errors[oneError].msg %> </p>
         <% } %>
-        <% } %>
+        <% } %> -->
         
 
 
     </div>
     <form action="/users/update" method="POST" enctype="multipart/form-data">
         <label for="nombre">Ingrese su nombre</label>
-        <input type="text" name="nombre"id="nombre"> <br>
+        <input type="text" value="<%=locals.oldData ? oldData.nombre: null%>" name="nombre" id="nombre" class="form-control is-invalid"> <br>
         <% if(locals.errors && errors.nombre) { %>
             <div class="text-danger" >
                 <%= errors.nombre.msg %>
             </div>
        <% } %>
    
-       
-
-        <label for="colores"></label>
-        <select name="colores" id="colores" >
-            <option value="" > seleccionar </option>
-            <option value="1" > rojo </option>
-            <option value="2" > azul </option>
-            <option value="3" > verde </option>
-            <option value="4" > amarillo </option>
-
-        </select> <br>
-
+       <div class="form-group">
+        <label><b>seleccionar:</b></label>
+        <select 
+            name="color" 
+            class="form-select <%= locals.errors && errors.color ? 'is-invalid' : null %>"
+        >
+            <option value="">Elegí un color</option>
+            <%  
+                let colores = ['Azul', 'verde', 'rojo', 'amarillo'];
+            %>
+            <% for (const oneColor of colores) { %>
+                <option 
+                    value="<%= oneColor %>"
+                    <%= locals.oldData && (oneColor === oldData.color) ? 'selected' : null %> 
+                > <%= oneColor %> </option>
+            <% } %>
+        </select>
+        <% if (locals.errors && errors.color) { %>
+            <div class="text-danger">
+                <%= errors.color.msg %>
+            </div>
+        <% } %>
+    </div>
+           
         <label for="email">Ingrese su email</label>
-        <input type="email" name="email" id ="email" > <br>
+        <input type="email" value="<%=locals.oldData ? oldData.email: null%>" name="email" id ="email" > <br>
         <% if(locals.errors && errors.email) { %>
             <div class="text-danger" >
                 <%= errors.email.msg %>
@@ -47,7 +61,7 @@
             <% } %>
 
         <label for="edad">Ingrese su edad</label>
-        <input type="text" name="edad" id="edad"> <br>
+        <input type="text" value="<%=locals.oldData ? oldData.edad: null%>" name="edad" id="edad"> <br>
         <% if(locals.errors && errors.edad) { %>
             <div class="text-danger">
                 <%= errors.edad.msg %>
