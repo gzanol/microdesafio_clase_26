@@ -16,11 +16,11 @@ const usersControllers={
 
 
      }
+    }
      //else{return res.render("form", {errors:errors}) }
 
      //res.redirect("form", {})
        
-    }
-}
+    
 
 module.exports=usersControllers
