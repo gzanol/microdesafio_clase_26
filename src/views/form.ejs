@@ -8,56 +8,52 @@
 </head>
 <body>
     <div class="formulario">
-<% if(locals.errors){ %>
-    <% for(let oneError in errors) { %> 
-        <p><%= errors[oneError].msg %> </p>
-        <% } %>
-        <% } %>
+                 
         
-
-
-    </div>
-    <form action="/users/update" method="POST" enctype="multipart/form-data">
-        <label for="nombre">Ingrese su nombre</label>
-        <input type="text" name="nombre"id="nombre"> <br>
-        <% if(locals.errors && errors.nombre) { %>
-            <div class="text-danger" >
-                <%= errors.nombre.msg %>
+        
+            
+            <form action="/users/update" method="POST" enctype="multipart/form-data">
+                <label for="nombre">Ingrese su nombre</label>
+                <input type="text" name="nombre"id="nombre"> <br>
+                <% if(locals.errors && errors.nombre) { %>
+                    <div class="text-danger" >
+                        <%= errors.nombre.msg %>
+                    </div>
+               <% } %>
+           
+               
+        
+                <label for="colores"></label>
+                <select name="colores" id="colores" >
+                    <option value="" > seleccionar </option>
+                    <option value="1" > rojo </option>
+                    <option value="2" > azul </option>
+                    <option value="3" > verde </option>
+                    <option value="4" > amarillo </option>
+        
+                </select> <br>
+        
+                <label for="email">Ingrese su email</label>
+                <input type="email" name="email" id ="email" > <br>
+                <% if(locals.errors && errors.email) { %>
+                    <div class="text-danger" >
+                        <%= errors.email.msg %>
+                    </div>
+                    <% } %>
+        
+                <label for="edad">Ingrese su edad</label>
+                <input type="text" name="edad" id="edad"> <br>
+                <% if(locals.errors && errors.edad) { %>
+                    <div class="text-danger">
+                        <%= errors.edad.msg %>
+                    </div>
+                    <% } %>
+        
+        
+        
+                <button type="submit"> Enviar </button>
             </div>
-       <% } %>
-   
-       
-
-        <label for="colores"></label>
-        <select name="colores" id="colores" >
-            <option value="" > seleccionar </option>
-            <option value="1" > rojo </option>
-            <option value="2" > azul </option>
-            <option value="3" > verde </option>
-            <option value="4" > amarillo </option>
-
-        </select> <br>
-
-        <label for="email">Ingrese su email</label>
-        <input type="email" name="email" id ="email" > <br>
-        <% if(locals.errors && errors.email) { %>
-            <div class="text-danger" >
-                <%= errors.email.msg %>
-            </div>
-            <% } %>
-
-        <label for="edad">Ingrese su edad</label>
-        <input type="text" name="edad" id="edad"> <br>
-        <% if(locals.errors && errors.edad) { %>
-            <div class="text-danger">
-                <%= errors.edad.msg %>
-            </div>
-            <% } %>
-
-
-
-        <button type="submit"> Enviar </button>
-    </div>
-    </form>
+            </form>
+    
 </body>
 </html>
